@@ -1,26 +1,42 @@
-import client from '../lib/apollo-client';
-import { gql } from '@apollo/client';
+"use client"; // Asegura que el componente sea del lado del cliente
 
-export default async function Page() {
-  let posts = [];
+import { useEffect, useState } from "react";
+import client from "../lib/apollo-client";
+import { gql } from "@apollo/client";
 
-  try {
-    const { data } = await client.query({
-      query: gql`
-        query {
-          posts {
-            nodes {
-              title
-              content
+export default function Page() {
+  const [posts, setPosts] = useState([]); // Maneja los datos dinámicamente en el cliente
+  const [loading, setLoading] = useState(true); // Controla el estado de carga
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const { data } = await client.query({
+          query: gql`
+            query {
+              posts {
+                nodes {
+                  title
+                  content
+                }
+              }
             }
-          }
-        }
-      `,
-    });
+          `,
+        });
 
-    posts = data?.posts?.nodes || [];
-  } catch (error) {
-    console.error("Error fetching GraphQL data:", error);
+        setPosts(data?.posts?.nodes || []);
+      } catch (error) {
+        console.error("Error fetching GraphQL data:", error);
+      } finally {
+        setLoading(false); // Termina el estado de carga
+      }
+    }
+
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return <p>Cargando publicaciones...</p>; // Renderiza un estado de carga
   }
 
   return (
@@ -39,5 +55,3 @@ export default async function Page() {
         <p>No hay publicaciones disponibles.</p>
       )}
     </div>
-  );
-}
