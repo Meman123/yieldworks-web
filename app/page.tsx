@@ -4,10 +4,16 @@ import { useEffect, useState } from "react";
 import client from "../lib/apollo-client";
 import { gql } from "@apollo/client";
 
+// Define la interfaz para las publicaciones
+interface Post {
+  title: string;
+  content: string;
+}
+
 export default function Page() {
-  const [posts, setPosts] = useState([]);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [posts, setPosts] = useState<Post[]>([]); // Especifica el tipo Post[]
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     async function fetchData() {
@@ -25,10 +31,10 @@ export default function Page() {
           `,
         });
 
-        setPosts(data?.posts?.nodes || []); // Maneja el caso de datos vacíos
+        setPosts(data?.posts?.nodes || []); // Asigna los datos al estado
       } catch (err) {
         console.error("Error fetching data:", err);
-        setError(err.message); // Captura el error para mostrarlo
+        setError((err as Error).message); // Captura el error
       } finally {
         setLoading(false);
       }
@@ -50,7 +56,7 @@ export default function Page() {
       <h1>Publicaciones desde WordPress</h1>
       {posts.length > 0 ? (
         <ul>
-          {posts.map((post, index) => (
+          {posts.map((post: Post, index: number) => ( // Especifica el tipo de post
             <li key={index}>
               <h2>{post.title}</h2>
               <div dangerouslySetInnerHTML={{ __html: post.content }} />
@@ -58,7 +64,7 @@ export default function Page() {
           ))}
         </ul>
       ) : (
-        <p>No hay publicaciones disponibles.</p> // Mensaje para datos vacíos
+        <p>No hay publicaciones disponibles.</p>
       )}
     </div>
   );
