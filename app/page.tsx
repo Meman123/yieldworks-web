@@ -55,3 +55,5 @@ export default function Page() {
         <p>No hay publicaciones disponibles.</p>
       )}
     </div>
+  );
+}
