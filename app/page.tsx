@@ -1,7 +1,7 @@
 import client from '../lib/apollo-client';
 import { gql } from '@apollo/client';
 
-export async function getStaticProps() {
+export default async function Page() {
   let posts = [];
 
   try {
@@ -23,15 +23,6 @@ export async function getStaticProps() {
     console.error("Error fetching GraphQL data:", error);
   }
 
-  return {
-    props: {
-      posts,
-    },
-    revalidate: 60, // Revalidar cada 60 segundos
-  };
-}
-
-export default function Page({ posts }) {
   return (
     <div>
       <h1>Publicaciones desde WordPress</h1>
