@@ -1,12 +1,13 @@
-"use client"; // Asegura que el componente sea del lado del cliente
+"use client";
 
 import { useEffect, useState } from "react";
 import client from "../lib/apollo-client";
 import { gql } from "@apollo/client";
 
 export default function Page() {
-  const [posts, setPosts] = useState([]); // Maneja los datos dinámicamente en el cliente
-  const [loading, setLoading] = useState(true); // Controla el estado de carga
+  const [posts, setPosts] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
@@ -24,11 +25,12 @@ export default function Page() {
           `,
         });
 
-        setPosts(data?.posts?.nodes || []);
-      } catch (error) {
-        console.error("Error fetching GraphQL data:", error);
+        setPosts(data?.posts?.nodes || []); // Maneja el caso de datos vacíos
+      } catch (err) {
+        console.error("Error fetching data:", err);
+        setError(err.message); // Captura el error para mostrarlo
       } finally {
-        setLoading(false); // Termina el estado de carga
+        setLoading(false);
       }
     }
 
@@ -36,7 +38,11 @@ export default function Page() {
   }, []);
 
   if (loading) {
-    return <p>Cargando publicaciones...</p>; // Renderiza un estado de carga
+    return <p>Cargando publicaciones...</p>;
+  }
+
+  if (error) {
+    return <p>Error al cargar publicaciones: {error}</p>;
   }
 
   return (
@@ -52,7 +58,7 @@ export default function Page() {
           ))}
         </ul>
       ) : (
-        <p>No hay publicaciones disponibles.</p>
+        <p>No hay publicaciones disponibles.</p> // Mensaje para datos vacíos
       )}
     </div>
   );
