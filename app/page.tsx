@@ -1,42 +1,43 @@
 import client from '../lib/apollo-client';
 import { gql } from '@apollo/client';
 
-type Post = {
-  title: string;
-  content: string;
-};
-
-type PostsData = {
-  posts: {
-    nodes: Post[];
-  };
-};
-
 export default async function Page() {
-  const { data } = await client.query<PostsData>({
-    query: gql`
-      query {
-        posts {
-          nodes {
-            title
-            content
+  let posts = [];
+
+  try {
+    const { data } = await client.query({
+      query: gql`
+        query {
+          posts {
+            nodes {
+              title
+              content
+            }
           }
         }
-      }
-    `,
-  });
+      `,
+    });
+
+    posts = data?.posts?.nodes || [];
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+  }
 
   return (
     <div>
-      <h1>Publicaciones desde WordPress</h1>
-      <ul>
-        {data.posts.nodes.map((post: Post, index) => (
-          <li key={index}>
-            <h2>{post.title}</h2>
-            <div dangerouslySetInnerHTML={{ __html: post.content }} />
-          </li>
-        ))}
-      </ul>
+      <h1>Publicaciones</h1>
+      {posts.length > 0 ? (
+        <ul>
+          {posts.map((post, index) => (
+            <li key={index}>
+              <h2>{post.title}</h2>
+              <div dangerouslySetInnerHTML={{ __html: post.content }} />
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No hay publicaciones disponibles.</p>
+      )}
     </div>
   );
 }
