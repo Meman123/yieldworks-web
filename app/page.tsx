@@ -18,14 +18,14 @@ export default async function Page() {
       `,
     });
 
-    posts = data?.posts?.nodes || [];
+    posts = data.posts.nodes || [];
   } catch (error) {
-    console.error("Error fetching posts:", error);
+    console.error("Error fetching GraphQL data:", error);
   }
 
   return (
     <div>
-      <h1>Publicaciones</h1>
+      <h1>Publicaciones desde WordPress</h1>
       {posts.length > 0 ? (
         <ul>
           {posts.map((post, index) => (
