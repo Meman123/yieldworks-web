@@ -1,18 +1,16 @@
-
 {
-    "rewrites": [
-      {
-        "source": "/wp-admin/:path*",
-        "destination": "http://160.153.0.24/wp-admin/:path*"
-      },
-      {
-        "source": "/wp-content/:path*",
-        "destination": "http://160.153.0.24/wp-content/:path*"
-      },
-      {
-        "source": "/wp-includes/:path*",
-        "destination": "http://160.153.0.24/wp-includes/:path*"
-      }
-    ]
-  }
-  
+  "rewrites": [
+    {
+      "source": "/wp-admin/:path*",
+      "destination": "http://160.153.0.24/wp-admin/:path*"
+    },
+    {
+      "source": "/wp-content/:path*",
+      "destination": "http://160.153.0.24/wp-content/:path*"
+    },
+    {
+      "source": "/wp-includes/:path*",
+      "destination": "http://160.153.0.24/wp-includes/:path*"
+    }
+  ]
+}
