@@ -1,45 +1,38 @@
-import client from "../lib/apollo-client";
-import { gql } from "@apollo/client";
+import { useEffect, useState } from 'react';
 
-export const dynamic = "force-dynamic"; // Asegura que siempre se renderice dinámicamente
+export default function HomePage() {
+  const [message, setMessage] = useState('Cargando...');
 
-export default async function Page() {
-  let posts = [];
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://admin.yieldworks.com.co/graphql', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            query: `
+              query {
+                generalSettings {
+                  title
+                  description
+                }
+              }
+            `,
+          }),
+        });
 
-  try {
-    const { data } = await client.query({
-      query: gql`
-        query {
-          posts {
-            nodes {
-              title
-              content
-            }
-          }
-        }
-      `,
-    });
+        const { data } = await response.json();
+        setMessage(`Título: ${data.generalSettings.title} | Descripción: ${data.generalSettings.description}`);
+      } catch (error) {
+        setMessage('Error al comunicarse con el backend.');
+        console.error(error);
+      }
+    };
 
-    posts = data?.posts?.nodes || [];
-  } catch (error) {
-    console.error("Error fetching GraphQL data:", error);
-  }
+    fetchData();
+  }, []);
 
-  return (
-    <div>
-      <h1>Publicaciones desde WordPress</h1>
-      {posts.length > 0 ? (
-        <ul>
-          {posts.map((post, index) => (
-            <li key={index}>
-              <h2>{post.title}</h2>
-              <div dangerouslySetInnerHTML={{ __html: post.content }} />
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No hay publicaciones disponibles.</p>
-      )}
-    </div>
-  );
+  return <div>{message}</div>;
 }
