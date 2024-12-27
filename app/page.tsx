@@ -1,13 +1,15 @@
-"use client"; // Aseguramos que todo esto sea del cliente
+"use client";
 
-import LottieHeader from "./components/LottieHeader";
+import dynamic from "next/dynamic";
+
+// Carga el componente de manera dinámica
+const LottieHeader = dynamic(() => import("./components/LottieHeader"), { ssr: false });
 
 export default function HomePage() {
   return (
-    <div style={{ textAlign: "center", padding: "20px" }}>
-      <h1>Bienvenido a YieldWorks</h1>
-      <p>Prueba de animación Lottie con Next.js.</p>
+    <main>
+      <h1>Página de Inicio</h1>
       <LottieHeader />
-    </div>
+    </main>
   );
 }

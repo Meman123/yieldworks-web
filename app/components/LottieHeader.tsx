@@ -1,26 +1,44 @@
-"use client"; // Forzamos que este componente sea exclusivamente del cliente
+"use client";
 
-import { useEffect, useRef } from "react";
 import lottie from "lottie-web";
+import { useEffect, useState } from "react";
 
 export default function LottieHeader() {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [animationContainer, setAnimationContainer] = useState<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (typeof window !== "undefined" && containerRef.current) {
-      const animation = lottie.loadAnimation({
-        container: containerRef.current, // Contenedor DOM
-        renderer: "svg", // Renderizado SVG
-        loop: true, // Animación en bucle
-        autoplay: true, // Reproducción automática
-        path: "/lottie-lego.json", // Archivo JSON desde `public`
-      });
+    if (animationContainer) {
+      try {
+        const animationData = require("../../public/lottie-lego.json");
+        console.log("Datos del JSON:", animationData);
 
-      return () => {
-        animation.destroy(); // Limpia la animación
-      };
+        if (!animationData || !animationData.layers || animationData.layers.length === 0) {
+          console.error("El archivo JSON de Lottie no es válido.");
+          return;
+        }
+
+        const animation = lottie.loadAnimation({
+          container: animationContainer,
+          renderer: "svg",
+          loop: true,
+          autoplay: true,
+          animationData,
+        });
+
+        return () => {
+          animation.destroy();
+        };
+      } catch (error) {
+        console.error("Error al cargar la animación:", error);
+      }
     }
-  }, []);
+  }, [animationContainer]);
 
-  return <div ref={containerRef} style={{ height: "300px", width: "300px" }} />;
+  return (
+    <div
+      ref={setAnimationContainer}
+      style={{ width: "100%", height: "100%" }}
+      aria-label="Lottie Animation"
+    />
+  );
 }
