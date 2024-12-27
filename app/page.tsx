@@ -1,13 +1,13 @@
+"use client"; // Aseguramos que todo esto sea del cliente
+
 import LottieHeader from "./components/LottieHeader";
 
 export default function HomePage() {
   return (
-    <div>
+    <div style={{ textAlign: "center", padding: "20px" }}>
+      <h1>Bienvenido a YieldWorks</h1>
+      <p>Prueba de animación Lottie con Next.js.</p>
       <LottieHeader />
-      <div style={{ textAlign: "center", padding: "20px" }}>
-        <h2>Esto es una prueba simple</h2>
-        <p>Sin referencias a document ni problemas en el servidor.</p>
-      </div>
     </div>
   );
 }

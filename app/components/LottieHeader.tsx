@@ -1,25 +1,26 @@
-"use client"; // Asegura que este código solo se ejecuta en el cliente
+"use client"; // Forzamos que este componente sea exclusivamente del cliente
+
+import { useEffect, useRef } from "react";
+import lottie from "lottie-web";
 
 export default function LottieHeader() {
-  return (
-    <div style={{ textAlign: "center", padding: "20px" }}>
-      <h1 style={{ animation: "fade-in 2s ease-in-out" }}>
-        ¡Animación simple sin errores!
-      </h1>
-      <style jsx>{`
-        @keyframes fade-in {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-        }
-        h1 {
-          color: #0070f3;
-          font-size: 2rem;
-        }
-      `}</style>
-    </div>
-  );
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && containerRef.current) {
+      const animation = lottie.loadAnimation({
+        container: containerRef.current, // Contenedor DOM
+        renderer: "svg", // Renderizado SVG
+        loop: true, // Animación en bucle
+        autoplay: true, // Reproducción automática
+        path: "/lottie-lego.json", // Archivo JSON desde `public`
+      });
+
+      return () => {
+        animation.destroy(); // Limpia la animación
+      };
+    }
+  }, []);
+
+  return <div ref={containerRef} style={{ height: "300px", width: "300px" }} />;
 }
