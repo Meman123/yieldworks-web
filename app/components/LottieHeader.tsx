@@ -1,17 +1,25 @@
-"use client";
-
-import { Player } from '@lottiefiles/react-lottie-player';
+"use client"; // Asegura que este código solo se ejecuta en el cliente
 
 export default function LottieHeader() {
   return (
-    <div style={{ textAlign: 'center', padding: '20px' }}>
-      <Player
-        autoplay
-        loop
-        src="/lottie-lego.json" // Ruta al archivo JSON en la carpeta public
-        style={{ height: '300px', width: '300px' }}
-      />
-      <h1 style={{ fontSize: '24px', marginTop: '20px' }}>¡Bienvenido a YieldWorks!</h1>
+    <div style={{ textAlign: "center", padding: "20px" }}>
+      <h1 style={{ animation: "fade-in 2s ease-in-out" }}>
+        ¡Animación simple sin errores!
+      </h1>
+      <style jsx>{`
+        @keyframes fade-in {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+        h1 {
+          color: #0070f3;
+          font-size: 2rem;
+        }
+      `}</style>
     </div>
   );
 }

@@ -1,14 +1,12 @@
-import LottieHeader from './components/LottieHeader';
+import LottieHeader from "./components/LottieHeader";
 
 export default function HomePage() {
   return (
     <div>
       <LottieHeader />
-      <div style={{ padding: '20px', textAlign: 'center' }}>
-        <h2>Explora nuestra animación Lottie</h2>
-        <p>
-          ¡Esta es una demostración de cómo integrar animaciones dinámicas en tu sitio web!
-        </p>
+      <div style={{ textAlign: "center", padding: "20px" }}>
+        <h2>Esto es una prueba simple</h2>
+        <p>Sin referencias a document ni problemas en el servidor.</p>
       </div>
     </div>
   );
