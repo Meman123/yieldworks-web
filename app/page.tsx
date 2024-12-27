@@ -2,8 +2,19 @@
 
 import { useEffect, useState } from 'react';
 
+interface Product {
+  id: string;
+  title: string;
+  excerpt: string;
+  featuredImage?: {
+    node: {
+      sourceUrl: string;
+    };
+  };
+}
+
 export default function HomePage() {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
