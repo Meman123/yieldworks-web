@@ -1,15 +1,9 @@
-"use client";
-
-import dynamic from "next/dynamic";
-
-// Carga el componente de manera dinámica
-const LottieHeader = dynamic(() => import("./components/LottieHeader"), { ssr: false });
-
-export default function HomePage() {
+export default function Home() {
   return (
-    <main>
-      <h1>Página de Inicio</h1>
-      <LottieHeader />
-    </main>
+    <div className="h-screen flex items-center justify-center bg-gray-800">
+      <h1 className="text-4xl font-bold text-white">
+        YieldWorks ©2024 
+      </h1>
+    </div>
   );
 }
