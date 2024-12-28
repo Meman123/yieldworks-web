@@ -1,7 +1,11 @@
+@import "@fortawesome/fontawesome-free/css/all.min.css"; /* Importa FontAwesome */
+
+/* Configuración de Tailwind */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Variables de colores personalizados */
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -14,8 +18,10 @@
   }
 }
 
+/* Estilos globales */
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
