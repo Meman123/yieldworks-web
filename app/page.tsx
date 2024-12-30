@@ -8,7 +8,7 @@ export default function Page() {
       
       
       <CircularTextCentered
-        text="YIELD WORKS 2024 "
+        text="YIELDWORKS"
         
         /* Ajusta el radio del círculo */
         radius={120}
