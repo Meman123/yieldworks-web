@@ -1,3 +1,6 @@
+import gsap from "gsap";
+import { MotionPathPlugin } from "gsap/MotionPathPlugin";
+gsap.registerPlugin(MotionPathPlugin);
 export default function AnimatedFishTemplate() {
   return (
     <iframe
@@ -10,3 +13,5 @@ export default function AnimatedFishTemplate() {
     ></iframe>
   );
 }
+
+
