@@ -1,26 +1,31 @@
 "use client";
 
 import { useEffect } from "react";
+import gsap from "gsap";
+import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 
 export default function Page() {
   useEffect(() => {
-    // Cargar GSAP manualmente
-    const script = document.createElement("script");
-    script.src = "./js/gsap/gsap.min.js"; // Ruta del archivo
-    script.async = true;
-    document.body.appendChild(script);
+    // Registrar el plugin MotionPath
+    gsap.registerPlugin(MotionPathPlugin);
 
-    const scrollTrigger = document.createElement("script");
-    scrollTrigger.src = "./js/gsap/ScrollTrigger.min.js"; // Ruta del plugin
-    scrollTrigger.async = true;
-    document.body.appendChild(scrollTrigger);
-
-    // Inicializar GSAP una vez que los scripts se hayan cargado
-    script.onload = () => {
-      if (window.gsap) {
-        window.gsap.to(".box", { duration: 2, x: 300 });
-      }
-    };
+    // Crear la animación
+    gsap.to(".circle", {
+      duration: 4,
+      motionPath: {
+        path: [
+          { x: 0, y: 0 },
+          { x: 100, y: -50 },
+          { x: 200, y: 0 },
+          { x: 300, y: 50 },
+          { x: 400, y: 0 },
+        ],
+        align: "self",
+        autoRotate: true, // Hace que el círculo rote siguiendo la trayectoria
+      },
+      repeat: -1, // La animación se repite infinitamente
+      ease: "power1.inOut",
+    });
   }, []);
 
   return (
@@ -33,14 +38,16 @@ export default function Page() {
         backgroundColor: "#f4f4f4",
       }}
     >
-      <div
-        className="box"
-        style={{
-          width: "100px",
-          height: "100px",
-          backgroundColor: "#3498db",
-        }}
-      ></div>
+      <svg width="500" height="300" style={{ overflow: "visible" }}>
+        <circle
+          className="circle"
+          r="20"
+          cx="50"
+          cy="50"
+          fill="#3498db"
+          style={{ transformOrigin: "center" }}
+        />
+      </svg>
     </main>
   );
 }
