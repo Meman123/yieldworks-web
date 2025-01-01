@@ -48,7 +48,7 @@ const WeirdFishes = () => {
       ...document.querySelectorAll<HTMLElement>(".fish__body"),
     ];
     const lights = [...document.querySelectorAll<HTMLElement>("[data-lights]")];
-    const rays = document.querySelector<HTMLElement>("[data-rays]");
+    //const rays = document.querySelector<HTMLElement>("[data-rays]");
 
     // Animación de burbujas
     const bubbles = gsap.timeline();
