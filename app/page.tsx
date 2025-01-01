@@ -234,57 +234,57 @@ const WeirdFishes = () => {
   <div className="content">
     <section>
       <div className="section__content">
-        <p>In the deepest ocean</p>
+        <p>Nada hacia abajo...</p>
       </div>
     </section>
     <section>
       <div className="section__content">
-        <p>the bottom of the sea</p>
+        <p>mas abajo</p>
       </div>
     </section>
     <section>
       <div className="section__content">
-        <p>Your eyes...</p>
+        <p></p>
       </div>
     </section>
     <section>
       <div className="section__content">
-        <p>they turn me...</p>
+        <p></p>
       </div>
     </section>
     <section>
       <div className="section__content">
-        <p>turn me on to phantoms</p>
+        <p>Un poco mas</p>
       </div>
     </section>
     <section>
       <div className="section__content">
-        <p>I follow to the edge of the earth</p>
+        <p></p>
       </div>
     </section>
     <section>
       <div className="section__content">
-        <p>and fall off</p>
+        <p></p>
       </div>
     </section>
     <section>
       <div className="section__content">
-        <p>I get eaten by the worms</p>
+        <p></p>
       </div>
     </section>
     <section>
       <div className="section__content">
-        <p>and weird fishes</p>
+        <p>Ya casi...</p>
       </div>
     </section>
     <section>
       <div className="section__content">
-        <p>Hit the bottom and escape</p>
+        <p></p>
       </div>
     </section>
     <section>
       <div className="section__content">
-        <p>escape</p>
+        <p>Alejito Marica</p>
       </div>
     </section>
   </div>
