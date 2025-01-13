@@ -1,16 +1,26 @@
-// app/home/page.tsx
-import { fetchPosts } from '@/lib/wordpress1';
-import HomePageClient from './HomePageClient';
+import Head from 'next/head';
 
-// *OJO*: No usamos 'use client' aquí, porque es un Server Component.
-// Next.js va a ejecutar este componente en el servidor.
-export default async function HomePage() {
-  // Aquí sí podemos hacer peticiones con fetch, 
-  // usar searchParams del server, etc.
-  const posts = await fetchPosts();
-
+export default function Home() {
   return (
-    // Renderizamos un Client Component y le pasamos los datos
-    <HomePageClient posts={posts} />
+    <>
+      {/* Encabezados y metaetiquetas deben ir dentro del componente <Head> */}
+      <Head>
+        <title>Home</title>
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="globals.css" />
+      </Head>
+
+      {/* Contenido principal */}
+      <header>
+        <h1 className="id">
+          YieldWorks<sup>™</sup>
+        </h1>
+      </header>
+      <div className="background"></div>
+      <main>
+        <div className="div"></div>
+      </main>
+    </>
   );
 }

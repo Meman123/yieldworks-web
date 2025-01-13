@@ -2,20 +2,126 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@font-face {
+  font-family: 'Segoe UI Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: url('../public/fonts/Segoe\ UI.woff') format('woff');
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+main {
+  
+  z-index: 1; /* Asegura que esté por encima del fondo */
 }
+
+
+/* Estilos para el fondo */
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: clamp( 550px,100vh,2000px);
+  z-index: 0; /* Asegura que esté detrás del contenido */
+  background: linear-gradient(to bottom, rgba(244, 142, 7, 1) 0%, rgba(244, 142, 7, 0.3) 100%);
+  mask-image: url('dripping.svg'); /* Ruta de la máscara */
+  mask-repeat: no-repeat;
+  mask-position: bottom;
+  mask-size: cover;
+
+  /* Compatibilidad para navegadores WebKit */
+  -webkit-mask-image: url('dripping.svg');
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: bottom;
+  -webkit-mask-size: cover;
+}
+
+
+
+
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Segoe UI Regular', Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.insta {
+  width: 5%;
+}
+
+.div {
+  border-radius: 10px;
+  width: 50%;
+  text-align: center; /* Centra el contenido dentro del div */
+  margin: 30px auto; /* Centra el div en la página */
+  min-width: 400px;
+
+  
+
+  
+}
+
+.title {
+  font-size: 60px;
+  font-family: 'Segoe UI';
+}
+
+p {
+  font-family: 'Segoe UI';
+}
+
+.read-more {
+  color: white;
+  background-color: orange;
+  margin: 10px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block; /* Se asegura de que sea tratada como un elemento que puede centrarse */
+  transition: background-color 0.2s ease;
+}
+
+.read-more:hover {
+  background-color: blue;
+}
+
+
+
+.id {
+  font-size: clamp(24px, 12vw, 60px);
+  position: relative;
+  text-align: center;
+  font-family: 'Segoe UI Regular';
+  color: white;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+.id sup {
+  position: relative;
+  top: -0.5em; /* Alineación relativa al tamaño del texto principal */
+  right: 0;
+  font-size: 0.4em; /* Tamaño relativo al texto principal */
+  color: rgba(255, 255, 255, 0.7);
+  font-family: 'Arial';
+}
+
+header {
+  position: fixed; /* Fija el header en la parte superior */
+  top: 5%;
+  left: 0;
+  width: 100%; /* Ocupa todo el ancho de la pantalla */
+  
+  z-index: 1000; /* Asegura que esté encima de otros elementos */
+  
+  padding: 10px 0; /* Espaciado vertical */
 }
