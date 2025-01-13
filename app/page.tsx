@@ -18,6 +18,7 @@ export default function Home() {
         </h1>
       </header>
       <div className="background"></div>
+      <div className="shadow"></div>
       <main>
         <div className="div"></div>
       </main>
