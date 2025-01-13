@@ -153,3 +153,33 @@ header {
   
   padding: 10px 0; /* Espaciado vertical */
 }
+
+
+
+/* Estilos básicos del botón */
+.modern-button {
+  background-color: #1025e0; /* Naranja base */
+  color: white; /* Texto blanco */
+  border: none; /* Sin bordes */
+  border-radius: 8px; /* Esquinas redondeadas */
+  padding: 10px 20px; /* Espaciado interno */
+  font-size: 16px; /* Tamaño de fuente */
+  font-family: 'Segoe UI', Arial, sans-serif; /* Fuente moderna */
+  cursor: pointer; /* Cambia el cursor a mano */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Transiciones suaves */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+/* Efecto hover (al pasar el mouse) */
+.modern-button:hover {
+  background-color: #10bdd4; /* Naranja más oscuro */
+  transform: translateY(-2px); /* Efecto de elevación */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Sombra más intensa */
+}
+
+/* Efecto active (al hacer clic) */
+.modern-button:active {
+  background-color: #B56004; /* Naranja aún más oscuro */
+  transform: translateY(0); /* Vuelve a su posición original */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra original */
+}

@@ -20,7 +20,9 @@ export default function Home() {
       <div className="background"></div>
       <div className="shadow"></div>
       <main>
-        <div className="div"></div>
+        <div className="div">
+        <a href="/miquis.jpg" target="_self"> <button className="modern-button">Clic Aquí</button></a>
+        </div>
       </main>
     </>
   );
